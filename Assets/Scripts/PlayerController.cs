@@ -88,20 +88,21 @@ public class PlayerController : MonoBehaviour
 		_controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
 		_animator.SetFloat("Speed", currentSpeed);
-
+		_animator.SetFloat("XAxis", horizontal_Axis);
+		_animator.SetFloat("YAxis", vertical_Axis);
 		//if (currentSpeed <= 0)
 		//{
 		//	_animator.SetBool("Walk", false);
 		//	_animator.SetBool("Run", false);
 		//	_animator.SetBool("Idle", true);
 		//}
-		//else if(currentSpeed > 0 || currentSpeed < sprint)
+		//else if (currentSpeed > 0 || currentSpeed < sprint)
 		//{
 		//	_animator.SetBool("Walk", true);
 		//	_animator.SetBool("Run", false);
 		//	_animator.SetBool("Idle", false);
 		//}
-		//else if(currentSpeed >= sprint)
+		//else if (currentSpeed >= sprint)
 		//{
 		//	_animator.SetBool("Walk", false);
 		//	_animator.SetBool("Run", true);
