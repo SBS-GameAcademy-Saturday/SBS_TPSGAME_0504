@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
     {
+		Cursor.lockState = CursorLockMode.Locked;
+
 		playerCamera = Camera.main.transform;
 		_controller = GetComponent<CharacterController>();
 		_animator = GetComponent<Animator>();
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
 		Move();
 
-		Jump();
+		//Jump();
 	}
 
 	/// <summary>
@@ -60,10 +62,10 @@ public class PlayerController : MonoBehaviour
 	{
 		//Input.GetAxisRaw() => -1,0,1 이 셋중 하나만
 		//Input.GetAxis() => -1~ 1 사이의 소주점까지 다 반환을 한다.
-		float horizontal_Axis = Input.GetAxisRaw("Horizontal");
-		float vertical_Axis = Input.GetAxisRaw("Vertical");
+		float horizontal_Axis = Input.GetAxisRaw(InputStrings.Horizontal);
+		float vertical_Axis = Input.GetAxisRaw(InputStrings.Vertical);
 
-		//         값      =     조건                       ? 조건이 참 : 조건이 거짓 => 삼항연산자
+		//삼항연산자   값   =     조건                         ? 조건이 참 : 조건이 거짓 => 삼항연산자
 		float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprint : speed;
 
 		Vector3 direction = new Vector3(horizontal_Axis, 0, vertical_Axis).normalized;
@@ -87,9 +89,10 @@ public class PlayerController : MonoBehaviour
 
 		_controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
-		_animator.SetFloat("Speed", currentSpeed);
-		_animator.SetFloat("XAxis", horizontal_Axis);
-		_animator.SetFloat("YAxis", vertical_Axis);
+		_animator.SetFloat(AnimationStrings.Speed, currentSpeed);
+		_animator.SetFloat(AnimationStrings.XAxis, horizontal_Axis);
+		_animator.SetFloat(AnimationStrings.YAxis, vertical_Axis);
+
 		//if (currentSpeed <= 0)
 		//{
 		//	_animator.SetBool("Walk", false);
@@ -108,7 +111,6 @@ public class PlayerController : MonoBehaviour
 		//	_animator.SetBool("Run", true);
 		//	_animator.SetBool("Idle", false);
 		//}
-		Debug.Log(currentSpeed);
 	}
 
 	/// <summary>
@@ -119,6 +121,7 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetButtonDown("Jump") && OnSurface)
 		{
 			velocity.y = Mathf.Sqrt(_jumpRange * -2 * _gravity);
+			_animator.SetTrigger(AnimationStrings.Jump);
 		}
 	}
 }

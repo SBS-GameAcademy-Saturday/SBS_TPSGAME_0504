@@ -15,8 +15,7 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//rb.velocity = 
-		//	new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		//rb.velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		cc.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * 3);
 	}
 }
