@@ -15,6 +15,7 @@ public class Rifle : MonoBehaviour
 	[Header("Rifle VFX")]
 	[SerializeField] private ParticleSystem muzzleSpark;
 	[SerializeField] private GameObject impactEffect;
+	[SerializeField] private GameObject goreEffect;
 
 	[Header("Rifle SFX")]
 	[SerializeField] private AudioSource audioSource;
@@ -61,16 +62,24 @@ public class Rifle : MonoBehaviour
 		{
 			Debug.Log(hitInfo.collider.gameObject.name);
 
-			GameObject impacktGO = Instantiate(impactEffect, hitInfo.point, 
-				Quaternion.LookRotation(hitInfo.normal));
-			Destroy(impacktGO,1);
-
 			// 맞은 정보에서 Gameobject의 Damageable Component를 가져온다.
 			Damageable damageable = hitInfo.collider.GetComponent<Damageable>();
-			if(damageable != null)
+			SoldierEnemyController soldierEnemyController = hitInfo.collider.GetComponent<SoldierEnemyController>();
+			if(soldierEnemyController != null)
+			{
+				GameObject impacktGO = Instantiate(goreEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+				Destroy(impacktGO, 1);
+			}
+			else
+			{
+				GameObject impacktGO = Instantiate(impactEffect, hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
+				Destroy(impacktGO, 1);
+			}
+			if (damageable != null)
 			{
 				damageable.HitDamage(Damage);
 			}
+
 		}
 	}
 

@@ -13,4 +13,8 @@ public class AnimationStrings
 	public static string Shoot = "Shoot";
 
 	public static string Jump = "Jump";
+
+	public static string Walk = "Walk";
+	public static string AimRun = "AimRun";
+	public static string Die = "Die";
 }
