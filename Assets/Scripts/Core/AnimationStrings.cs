@@ -11,6 +11,7 @@ public class AnimationStrings
 	public static string Idle = "Idle";
 	public static string Aiming = "Aiming";
 	public static string Shoot = "Shoot";
+	public static string Reload = "Reload";
 
 	public static string Jump = "Jump";
 

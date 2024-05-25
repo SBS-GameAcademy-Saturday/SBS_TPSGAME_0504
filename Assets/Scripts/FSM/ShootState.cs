@@ -21,6 +21,7 @@ public class ShootState : MonoBehaviour, IState
 
 	[Header("Enemy FX")]
 	[SerializeField] private ParticleSystem _muzzleSpark;
+	[SerializeField] private ParticleSystem _muzzleFlame;
 	[SerializeField] private AudioClip _shootSFX;
 	[SerializeField] private AudioSource _audioSource;
 
@@ -44,6 +45,7 @@ public class ShootState : MonoBehaviour, IState
 		if (!previousShoot)
 		{
 			_muzzleSpark.Play();
+			if (_muzzleFlame != null && !_muzzleFlame.isPlaying) _muzzleFlame.Play();
 			_audioSource.PlayOneShot(_shootSFX);
 
 			RaycastHit hit;

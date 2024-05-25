@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
 	private Vector3 velocity;
 	private bool OnSurface;
+	private bool CanWalk = true;
 
 
 	void Start()
@@ -49,10 +50,15 @@ public class PlayerController : MonoBehaviour
 		velocity.y += _gravity * Time.deltaTime;
 		_controller.Move(velocity * Time.deltaTime * _fallingSpeed);
 
-
-		Move();
+		if(CanWalk)
+			Move();
 
 		//Jump();
+	}
+
+	public void SetCanWalk(bool state)
+	{
+		CanWalk = state;
 	}
 
 	/// <summary>

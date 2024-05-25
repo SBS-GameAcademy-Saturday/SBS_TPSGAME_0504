@@ -7,13 +7,23 @@ public class Damageable : MonoBehaviour
 {
 	public UnityEvent OnDeathEvent;
 	public UnityEvent OnDamageEvent;
+	public UnityEvent<float,float> OnHealthChangeEvent;
+
 	public float Health = 100;
+	public float MaxHealth = 100;
+
+	private void Awake()
+	{
+		Health = MaxHealth;
+	}
 
 	public void HitDamage(float amount)
 	{
 		Health -= amount;
 
 		OnDamageEvent?.Invoke();
+
+		OnHealthChangeEvent?.Invoke(Health, MaxHealth);
 
 		if (Health <= 0)
 		{

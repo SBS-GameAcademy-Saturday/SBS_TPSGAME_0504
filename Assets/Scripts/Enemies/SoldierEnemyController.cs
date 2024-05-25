@@ -126,5 +126,6 @@ public class SoldierEnemyController : MonoBehaviour
 	private void OnDisable()
 	{
 		_damageable.OnDeathEvent.RemoveAllListeners();
+		_damageable.OnDamageEvent.RemoveAllListeners();
 	}
 }
