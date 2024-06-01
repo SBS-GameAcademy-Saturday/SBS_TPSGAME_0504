@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStates : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerStates : MonoBehaviour
 	[SerializeField] CinemachineVirtualCamera aimingCamera;
 	[SerializeField] GameObject thirdPersonCanvas;
 	[SerializeField] GameObject AimingCanvas;
+
+	[SerializeField] Image thirdPersionCrosshair;
+	[SerializeField] Image aimingCrosshair;
 
 	private Animator _animator;
 	private int activePriority = 15;
@@ -42,4 +46,22 @@ public class PlayerStates : MonoBehaviour
 			AimingCanvas.SetActive(false);
 		}
     }
+
+	public void ChangeCrosshair(bool change)
+	{
+		//if (change)
+		//{
+		//	thirdPersionCrosshair.color = Color.blue;
+		//	aimingCrosshair.color = Color.blue;
+		//}
+		//else
+		//{
+		//	thirdPersionCrosshair.color = Color.white;
+		//	aimingCrosshair.color = Color.white;
+		//}
+
+		// 삼항 연산자              =  조건 ? 참일 때 처리  : 거짓일 때 처리
+		thirdPersionCrosshair.color = change ? Color.blue : Color.white;
+		aimingCrosshair.color = change ? Color.blue : Color.white;
+	}
 }
